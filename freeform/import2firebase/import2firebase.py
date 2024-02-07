@@ -1,3 +1,4 @@
+import json
 import firebase_admin
 from firebase_admin import credentials, db
 
@@ -20,12 +21,7 @@ ref = db.reference()
 
 tasks_ref = ref.child('tasks')
 
-try:
-    tasks_ref.get()
-except db.ApiCallError as e:
-    if e.code == 404:
-        tasks_ref.set({})
-        print("Tasks collection created")
+tasks = tasks_ref.set({})
 
 try:
     tasks_ref.set(data)
