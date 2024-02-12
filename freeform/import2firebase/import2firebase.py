@@ -2,9 +2,9 @@ import json
 import firebase_admin
 from firebase_admin import credentials, db
 
-cred = credentials.Certificate("./todofirebase.json")
+cred = credentials.Certificate("./todoappkey.json")
 firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://todo-8ed5c.firebaseio.com'
+    'databaseURL': 'https://todoapp-8ed5c.firebaseio.com'
 })
 
 try:
