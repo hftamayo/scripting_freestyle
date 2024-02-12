@@ -2,14 +2,14 @@ import json
 import firebase_admin
 from firebase_admin import credentials, db
 
-cred = credentials.Certificate('./todofirebase.json')
+cred = credentials.Certificate("./todofirebase.json")
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://todo-8ed5c.firebaseio.com'
 })
 
 try:
-    with open('todo.json', 'r') as f:
-        data = json.load(f)
+    with open('./todo.json', 'r') as data_file:
+        data = json.load(data_file)
 except FileNotFoundError:
     print("Error: todo.json file not found")
     exit()
@@ -17,14 +17,10 @@ except json.JSONDecodeError:
     print("Error: Invalid JSON format in todo.json")
     exit()
 
-ref = db.reference()
-
-tasks_ref = ref.child('tasks')
-
-tasks = tasks_ref.set({})
-
 try:
-    tasks_ref.set(data)
-    print("data imported successfully")
+    ref = db.reference('tasks') 
+    ref.set(data)
+    print("Data successfully imported into the 'tasks' collection!")
 except Exception as e:
-    print("error during database import", e)
+    print("Error during database import", e)
+    exit()
