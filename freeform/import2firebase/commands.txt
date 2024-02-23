@@ -1,5 +1,8 @@
+Uploading data to firestore:
+
 python3 -m venv my_venv  # Create virtual environment
 source my_venv/bin/activate  # Activate
 pip3 install -r requirements.txt  # Install dependencies
-python3 my_script.py  # Run script
+<script name> <function> <collection name>
+python3 import2fb2.py todo.json add tasks  # Run script
 deactivate  # Deactivate environment
