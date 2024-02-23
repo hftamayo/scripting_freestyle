@@ -33,7 +33,7 @@ class UploadJSONFileToFirestore:
         if val == 'set' or val == 'add':
             self._method = val
         else:
-            print("Error: method must be 'set' or 'add'")
+            print(f"Error: method {val} must be set or add")
 
     @property
     def json_data(self):
@@ -51,7 +51,7 @@ class UploadJSONFileToFirestore:
             except Exception as e:
                 print(f'File Exception: {str(e)}')
         else:
-            print("Wrong file path {val}")
+            print(f"Wrong file path {val}")
 
     def upload(self):
         if self.json_data and self.method:
@@ -73,3 +73,25 @@ class UploadJSONFileToFirestore:
                     self.set(item)
                 else:
                     self.add(item)
+                #end of the file passed as parameter
+                #print sucess message
+                if idx == len(self.json_data)-1:
+                    stop = timeit.default_timer()
+                    print('*********************\n**************DATA UPLOAD COMPLETED**************\n*********************')
+                    print(f'Elapsed Time: {stop - self.start}')
+
+    #stage2: add data to firestore collection with auto id
+    def add(self, data):
+        try:
+            db.collection(self.collectionname).add(data)
+        except Exception as e:
+            print(f'Error: {str(e)}')
+
+    def set(self, data):
+        try:
+            db.collection(self.collectionname).document(data['id']).set(data)
+        except Exception as e:
+            print(f'Error: {str(e)}')
+
+uploadjson = UploadJSONFileToFirestore()
+uploadjson.upload()
