@@ -13,7 +13,7 @@ db = firestore.client()
 class UploadJSONFileToFirestore:
     def __init__(self) -> None:
         self.start = timeit.default_timer()
-        if(len.sys.argv) != 3:
+        if len(sys.argv[1:]) != 3:
             print("Error: check your command line arguments: expected filepath, method, collection")
             return None
         
@@ -26,7 +26,7 @@ class UploadJSONFileToFirestore:
     
     @property
     def method(self):
-        return self.method
+        return self._method
     
     @method.setter
     def method(self, val):
@@ -37,7 +37,7 @@ class UploadJSONFileToFirestore:
 
     @property
     def json_data(self):
-        return self.json_data
+        return self._json_data
     
     @json_data.setter
     def json_data(self, val):
