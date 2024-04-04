@@ -32,7 +32,11 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 
 echo "Installing golang"
-
+golang_version="1.22.2"
+golang_url="https://go.dev/dl/go$golang_version.linux-amd64.tar.gz"
+wget $golang_url
+sudo tar -C /usr/local -xzf go1.22.1.linux-amd64.tar.gz
+echo "export PATH=$PATH:/usr/local/go/bin
 
 echo "verifying python and pip version:"
 python3 --version
@@ -47,3 +51,6 @@ gradle --version
 
 echo "verifying rust installation"
 rustc --version
+
+echo "verifying go installation"
+go version
