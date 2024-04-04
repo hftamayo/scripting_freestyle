@@ -1,6 +1,6 @@
 #!/bin/bash
 echo "STAGE 2: PROGRAMMING LANGUAGE ENVIRO"
-echo "Tools to be installed: nvm, node, python3, rust, golang, yarn, pnpm, java, maven, gradle"
+echo "Tools to be installed: nvm, node, yarn, pnpm, python3, java, maven, gradle, rust, golang"
 
 echo "Installing python and pip version 3.x"
 sudo apt install -y python3 python3-pip
@@ -21,10 +21,17 @@ mkdir -p "$gradle_dir"
 wget -qO- "$gradle_url" | tar -xzf - -C "$gradle_dir"
 
 # Set environment variable (modify if you prefer a different shell)
-echo "export PATH=$PATH:$gradle_dir/bin" >> ~/.bashrc
+echo "export GRADLE_HOME=/opt/gradle-8.7/bin" >> ~/.bashrc
+echo "export PATH=$PATH:$GRADLE_HOME" >> ~/.bashrc
 
 # Source the updated bash configuration (optional, but recommended for immediate use)
 source ~/.bashrc
+
+echo "Installing rust: for updates|remove use: rustup update | rustup self uninstall"
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
+
+echo "Installing golang"
 
 
 echo "verifying python and pip version:"
@@ -37,3 +44,6 @@ java --version
 javac --version
 maven --version
 gradle --version
+
+echo "verifying rust installation"
+rustc --version
