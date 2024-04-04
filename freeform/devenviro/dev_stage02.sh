@@ -4,14 +4,19 @@ echo "Tools to be installed: nvm, node, yarn, pnpm, python3, java, maven, gradle
 
 echo "Installing node ecosystem"
 nvm_version="v0.39.7"
-nvm_url="https://raw.githubusercontent.com/nvm-sh/nvm/$nvm_version/install.sh | bash"
+nvm_url="https://raw.githubusercontent.com/nvm-sh/nvm/$nvm_version/install.sh"
 wget $nvm_url
-source $HOME/.bashrc
+chmod +x install.sh
+./install.sh
 nvm --version
-node_target="
+node_target="20"
 nvm install $node_target
 nvm use $node_target
-
+npm install --global npm
+#pnpm
+wget -qO- https://get.pnpm.io/install.sh | sh
+#yarn
+npm install --global yarn
 
 echo "Installing python and pip version 3.x"
 sudo apt install -y python3 python3-pip
