@@ -2,6 +2,17 @@
 echo "STAGE 2: PROGRAMMING LANGUAGE ENVIRO"
 echo "Tools to be installed: nvm, node, yarn, pnpm, python3, java, maven, gradle, rust, golang"
 
+echo "Installing node ecosystem"
+nvm_version="v0.39.7"
+nvm_url="https://raw.githubusercontent.com/nvm-sh/nvm/$nvm_version/install.sh | bash"
+wget $nvm_url
+source $HOME/.bashrc
+nvm --version
+node_target="
+nvm install $node_target
+nvm use $node_target
+
+
 echo "Installing python and pip version 3.x"
 sudo apt install -y python3 python3-pip
 
@@ -37,6 +48,11 @@ golang_url="https://go.dev/dl/go$golang_version.linux-amd64.tar.gz"
 wget $golang_url
 sudo tar -C /usr/local -xzf go1.22.1.linux-amd64.tar.gz
 echo "export PATH=$PATH:/usr/local/go/bin
+
+echo "verifying nvm and node version"
+nvm --version
+node -v
+
 
 echo "verifying python and pip version:"
 python3 --version
